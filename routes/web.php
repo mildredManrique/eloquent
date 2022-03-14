@@ -12,6 +12,7 @@
 */
 
 use App\Post;
+use App\User;
 
 Route::get('/eloquent', function(){
     #$posts = Post::all(); //Manda a llamar a todos los archivos
@@ -23,6 +24,30 @@ Route::get('/eloquent', function(){
 
     foreach($posts as $post){
         echo "$post->id $post->title <br>";
+    }
+});
+
+
+Route::get('/posts', function(){
+    $posts = Post::get(); 
+
+
+    foreach($posts as $post){
+        echo "
+        $post->id
+        <strong>{$post->user->name}</strong>
+        $post->title <br>";
+    }
+});
+
+Route::get('/users', function(){
+    $users = User::all();   
+
+    foreach($users as $user){
+        echo "
+        $user->id
+        <strong>$user->name</strong>
+        {$user->posts->count()} posts <br>";
     }
 });
 
