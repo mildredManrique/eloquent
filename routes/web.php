@@ -51,6 +51,9 @@ Route::get('/users', function(){
     }
 });
 
+Route::resource('/formulario', 'UserController');
+
+
 
 Route::get('/', function () {
     return view('welcome');
